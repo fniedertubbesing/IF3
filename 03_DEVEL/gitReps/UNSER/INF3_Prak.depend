@@ -1,0 +1,41 @@
+# depslib dependency file v1.0
+1697030287 source:/home/ubuntu/03_DEVEL/gitReps/INF3_Prak/SHA256.C
+	<cstring>
+	<fstream>
+	"SHA256.H"
+
+1697030287 /home/ubuntu/03_DEVEL/gitReps/INF3_Prak/SHA256.H
+	<string>
+
+1697030287 source:/home/ubuntu/03_DEVEL/gitReps/INF3_Prak/SIMPLESOCKET.C
+	<iostream>
+	<cstdio>
+	<cstring>
+	<string>
+	<sys/socket.h>
+	<arpa/inet.h>
+	<netdb.h>
+	<unistd.h>
+	<sys/types.h>
+	<netinet/in.h>
+	<cstdio>
+	<cstdlib>
+	<cstring>
+	<cerrno>
+	<ctime>
+	"SIMPLESOCKET.H"
+
+1697030287 /home/ubuntu/03_DEVEL/gitReps/INF3_Prak/SIMPLESOCKET.H
+	<string>
+	<arpa/inet.h>
+
+1697030287 source:/home/ubuntu/03_DEVEL/gitReps/INF3_Prak/TASK1.C
+	<cstdlib>
+	<cstring>
+	<iostream>
+	"TASK1.H"
+	"SHA256.H"
+
+1697030287 /home/ubuntu/03_DEVEL/gitReps/INF3_Prak/TASK1.H
+	<string>
+
