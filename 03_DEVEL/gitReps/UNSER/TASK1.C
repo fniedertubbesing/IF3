@@ -50,6 +50,38 @@ string BlackBoxUnsafe::randomPwd(int l){
 	}
 	return pwd_;
 }
+//_________________________________________________________________________________________________
+
+
+string BlackBoxSafe::input(string strPwd){
+    if(sha256(strPwd) == this->pwd_){ //compare encrypted passwords
+        return "right password";
+    }
+    else{
+        return "wrong password";
+    }
+}
+
+string Server::checkPassword(string password){
+    return pwdBox->input(password);
+}
+
+void Server::newPassword(int Length, int symbSet){
+    if(pwdBox != nullptr){ //free allocated memory if pwdBox Object was already created
+        delete pwdBox;
+        pwdBox = nullptr;
+    }
+    BlackBoxSafe *pwdBox = new BlackBoxSafe(Length,symbSet);
+    pwdBox->pwd_ = sha256(pwdBox->pwd_);//encrypt password
+}
+
+Server::Server(){
+    newPassword(4,4); //default values to start with
+}
+
+Server::~Server(){
+    delete pwdBox;
+}
 
 void demoTASK1_00(){
 	string pwd("meinpassword");

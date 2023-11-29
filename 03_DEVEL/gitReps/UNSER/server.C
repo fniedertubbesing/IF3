@@ -18,9 +18,14 @@
 
 #include "SIMPLESOCKET.H"
 
+#include "TASK1.H"
+
 
 int main(){
 	srand(time(nullptr));
 	TCPserver srv(2022,25);
 	srv.run();
 }
+
+
+

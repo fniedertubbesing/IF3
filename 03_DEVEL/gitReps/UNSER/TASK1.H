@@ -105,10 +105,29 @@ class BlackBoxSafe : public BlackBoxUnsafe{
 	/// \todo  Implementation of class BlackBoxSafe needs to be finalized.
 public:
 	BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){;};
-	virtual string input(string strPwd){return string("undefined");};
+	virtual string input(string strPwd);
 };
 
+/**
+ *
+ * \class Server
+ *
+ * \brief Implements the needed server methods and stores a encrypted pasword.
+ *
+ */
+class Server{
+private:
+    BlackBoxSafe *pwdBox = nullptr;
 
+public:
+    string checkPassword(string password);
+    void newPassword(int Length, int symbSet);
+
+    Server();
+    ~Server();
+
+
+};
 
 
 /**
