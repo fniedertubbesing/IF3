@@ -132,6 +132,23 @@ public:
 
 };
 
+namespace mp {
+    std::string server_response(std::string response) {
+
+        return "";
+    }
+
+    bool client_askForPassword(std::string toSend) {
+
+        return false;
+    }
+
+    bool client_checkPassword(std::string password) {
+
+        return false;
+    }
+
+}
 
 /**
  *
