@@ -10,7 +10,6 @@
 #include <iostream>
 
 #include "TASK1.H"
-#include "SHA256.H"
 
 namespace TASK1{
 
@@ -72,7 +71,6 @@ void Server::newPassword(int Length, int symbSet){
         pwdBox = nullptr;
     }
     BlackBoxSafe *pwdBox = new BlackBoxSafe(Length,symbSet);
-    pwdBox->pwd_ = sha256(pwdBox->pwd_);//encrypt password
 }
 
 Server::Server(){
