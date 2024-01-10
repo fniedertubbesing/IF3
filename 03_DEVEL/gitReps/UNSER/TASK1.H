@@ -132,22 +132,72 @@ public:
 
 };
 
+
 namespace mp {
-    std::string server_response(std::string response) {
+	char delimiter = '^';
 
-        return "";
-    }
+	std::string send(std::string toSend) {
+		int position = 0;
+		std::string buffer = "";
+		for (int i = 0; i < toSend.size(); i++) {
+			if (toSend[i] == delimiter) {
+				i++;
+				position = i;
+				buffer = toSend.substr(0, i);
+			}
+		}
+		if (buffer == "" || position == 0) {
+			return "error";
+		}
+		if (buffer == "client") {
+			buffer = toSend.substr(position);
+			for (int i = 0; i < toSend.size(); i++) {
+				if (toSend[i] == delimiter) {
+					i++;
+					buffer = toSend.substr(position, i);
+					position = i;
+				}
+			}
+			if (buffer == "askForPassword") {
 
-    bool client_askForPassword(std::string toSend) {
+			}
+			else if (buffer == "checkPassword") {
 
-        return false;
-    }
+			}
+			else {
+				return "error";
+			}
+		}
+		else if (buffer == "server") {
 
-    bool client_checkPassword(std::string password) {
+		}
+		return "error";
+	}
+	//Die Antwort des Server wird als Parameter übergeben und die Antwort ohne Trennzeichen ausgegeben
+	std::string server_response(std::string response) {
+		for (int i = 0; i < response.size(); i++) {
+			if (response[i] == delimiter) {
+				i++;
+				return(response.substr(i));
 
-        return false;
-    }
-
+			}
+		}
+		return "error";
+	}
+	//Passwort Anfrage wird gesendet, true wenn Erfolgreich gesendet
+	bool client_askForPassword(std::string toSend) {
+		if (felixfunc(toSend) == "true") {
+			return true;
+		}
+		return false;
+	}
+	//Passwort Korrektheitsanfrage wird gesendet, true wenn Passwort korrekt
+	bool client_checkPassword(std::string password) {
+		if (felixfunc2(password) == "true") {
+			return true;
+		}
+		return false;
+	}
 }
 
 /**
