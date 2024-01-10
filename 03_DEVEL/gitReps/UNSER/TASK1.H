@@ -133,6 +133,7 @@ public:
 };
 
 
+
 namespace mp {
 	char delimiter = '^';
 
@@ -159,17 +160,17 @@ namespace mp {
 				}
 			}
 			if (buffer == "askForPassword") {
-
+				return client_askForPassword(toSend.substr(position, toSend.size()));
 			}
 			else if (buffer == "checkPassword") {
-
+				return client_askForPassword(toSend.substr(position, toSend.size()));
 			}
 			else {
 				return "error";
 			}
 		}
 		else if (buffer == "server") {
-
+			return "error";
 		}
 		return "error";
 	}
@@ -185,18 +186,18 @@ namespace mp {
 		return "error";
 	}
 	//Passwort Anfrage wird gesendet, true wenn Erfolgreich gesendet
-	bool client_askForPassword(std::string toSend) {
+	std::string client_askForPassword(std::string toSend) {
 		if (felixfunc(toSend) == "true") {
-			return true;
+			return "true";
 		}
-		return false;
+		return "false";
 	}
 	//Passwort Korrektheitsanfrage wird gesendet, true wenn Passwort korrekt
-	bool client_checkPassword(std::string password) {
+	std::string client_checkPassword(std::string password) {
 		if (felixfunc2(password) == "true") {
-			return true;
+			return "true";
 		}
-		return false;
+		return "false";
 	}
 }
 
