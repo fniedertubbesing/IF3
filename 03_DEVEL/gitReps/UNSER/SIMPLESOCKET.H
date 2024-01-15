@@ -134,7 +134,7 @@ protected:
 	 * \return string containing the response of the server.
 	 *
 	 */
-	virtual string        myResponse(string input);
+	virtual string myResponse(string input);
 
 private:
 

@@ -53,24 +53,26 @@ int main() {
 
     c.set();
     c.sendData(c.newpwd());
-    string imsg = c.receive(2);
-
-    int i;
+    string imsg = c.receive(32);
+    cout << imsg << endl;
+    long long int i;
 
     if(imsg == "OK"){
     imsg = "FALSE";
     i = 0;
 
-    while(imsg == "FALSE"){
-    c.sendData(c.pwdguess());
-    imsg = c.receive(5);
-    i++;
+        while(imsg == "FALSE"){
+        c.sendData(c.pwdguess());
+        imsg = c.receive(5);
+        //cout << imsg << endl;
+        i++;
+        }
     }
+    else{
+        cout << "Fehler" << endl;
     }
-    else{cout << "Fehler" << endl;
-    }
-
-    cout << "Das Passwort wurde nach " << i << " Versuchen erraten";
+    c.sendData("BYEBYE");
+    cout << "Das Passwort wurde nach " << i << " Versuchen erraten" << endl;
 
 
 	return 0;
