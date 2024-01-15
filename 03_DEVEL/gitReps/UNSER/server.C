@@ -22,12 +22,13 @@
 
 #include "TASK1.H"
 
+
 using namespace std;
 
 
 class myServer : public TCPserver{
 protected:
-    TASK1::BlackBoxSafe *pwdBox = nullptr;
+    TASK1::BlackBoxSafe *pwdBox_ = nullptr;
 
     string checkPassword(string password);
     void newPassword(int Length, int symbSet);
@@ -49,16 +50,16 @@ int main(){
 
 
 string myServer::checkPassword(string password){
-    return pwdBox->input(password);
+    return pwdBox_->input(password);
 }
 
 /*
 void myServer::newPassword(int Length, int symbSet) {
-    if (pwdBox != nullptr) {
-        delete pwdBox;
-        pwdBox = nullptr;
+    if (pwdBox_ != nullptr) {
+        delete pwdBox_;
+        pwdBox_ = nullptr;
     }
-    pwdBox = new TASK1::BlackBoxSafe(Length, symbSet);
+    this->pwdBox_ = new TASK1::BlackBoxSafe(Length, symbSet);
 }
 */
 
@@ -71,8 +72,11 @@ string pwd;
         return "OK";
     }
     else if(input.compare(0,4, "PWD[") == 0){
-    pwd = input.substr(4,input.size()-5);
-
+        pwd = input.substr(4,input.size()-5);
+        return checkPassword(pwd);
+    }
+    else{
+        return "ERROR: unknown command";
     }
 
 }
