@@ -107,8 +107,8 @@ class BlackBoxSafe : public BlackBoxUnsafe{
 public:
 	BlackBoxSafe(int pwdLength, int symbSetSize) : BlackBoxUnsafe(pwdLength, symbSetSize){
 	pwd_ = sha256(pwd_);    //encrypt password
-	}
-	virtual string input(string strPwd);
+	};
+	string input(string strPwd);
 };
 
 /**

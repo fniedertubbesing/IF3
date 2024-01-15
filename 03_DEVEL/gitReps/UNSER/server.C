@@ -53,26 +53,26 @@ string myServer::checkPassword(string password){
     return pwdBox_->input(password);
 }
 
-/*
+
 void myServer::newPassword(int Length, int symbSet) {
-    if (pwdBox_ != nullptr) {
+    if (this->pwdBox_ != nullptr) {
         delete pwdBox_;
         pwdBox_ = nullptr;
     }
-    this->pwdBox_ = new TASK1::BlackBoxSafe(Length, symbSet);
+    pwdBox_ = new TASK1::BlackBoxSafe(Length, symbSet);
 }
-*/
+
 
 string myServer::myResponse(string input){
 int length, symbSet;
 string pwd;
     if(input.compare(0, 7, "NEWPWD[")==0){
         sscanf(input.c_str(), "NEWPWD[%i,%i]", &length, &symbSet);
-        //myServer::newPassword(length, symbSet);
+        newPassword(length, symbSet);
         return "OK";
     }
-    else if(input.compare(0,4, "PWD[") == 0){
-        pwd = input.substr(4,input.size()-5);
+    else if(input.compare(0, 4, "PWD[") == 0){
+        pwd = input.substr(4, input.size() - 5);
         return checkPassword(pwd);
     }
     else{

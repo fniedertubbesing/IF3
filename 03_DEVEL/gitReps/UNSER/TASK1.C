@@ -10,6 +10,7 @@
 #include <iostream>
 
 #include "TASK1.H"
+#include "SHA256.H"
 
 namespace TASK1{
 
@@ -49,7 +50,6 @@ string BlackBoxUnsafe::randomPwd(int l){
 	}
 	return pwd_;
 }
-//_________________________________________________________________________________________________
 
 
 string BlackBoxSafe::input(string strPwd){
@@ -60,6 +60,7 @@ string BlackBoxSafe::input(string strPwd){
         return "FALSE";
     }
 }
+
 
 void demoTASK1_00(){
 	string pwd("meinpassword");
