@@ -16,9 +16,14 @@
 #include <sys/socket.h> // for socket creation
 #include <netinet/in.h> //contains constants and structures needed for internet domain addresses
 
+#include <string>
+
 #include "SIMPLESOCKET.H"
 
 #include "TASK1.H"
+
+using namespace std;
+
 
 class myServer : public TCPserver{
 protected:
@@ -31,62 +36,44 @@ protected:
 
     string myResponse(string input);
 
-
-    myServer(int port, int maxDataSizeRecv_) : TCPserver(int port, int maxDataSizeRecv);
-    ~myServer():~TCPserver();
+    myServer(int port, int maxDataSizeRecv_) : TCPserver(port, maxDataSizeRecv_) {};
 };
 
 
 int main(){
 
 	srand(time(nullptr));
-	myServer srv(2022,25);
+	TCPserver srv(2022,25);
 	srv.run();
 }
 
-
-string BlackBoxSafe::input(string strPwd){
-    if(sha256(strPwd) == this->pwd_){ //compare encrypted passwords
-        return "right password";
-    }
-    else{
-        return "wrong password";
-    }
-}
 
 string myServer::checkPassword(string password){
     return pwdBox->input(password);
 }
 
-void myServer::newPassword(int Length, int symbSet){
-    if(pwdBox != nullptr){ //free allocated memory if pwdBox Object was already created
+/*
+void myServer::newPassword(int Length, int symbSet) {
+    if (pwdBox != nullptr) {
         delete pwdBox;
         pwdBox = nullptr;
     }
-    BlackBoxSafe *pwdBox = new BlackBoxSafe(Length,symbSet);
-}
-/*
-myServer::myServer(){
-    newPassword(4,4); //default values to start with
-}
-
-myServer::~myServer(){
-    delete pwdBox;
+    pwdBox = new TASK1::BlackBoxSafe(Length, symbSet);
 }
 */
 
-myServer::myResponse(string input){
+string myServer::myResponse(string input){
 int length, symbSet;
 string pwd;
-    if(input.compare(0, 7, "NEWPWD[")){
+    if(input.compare(0, 7, "NEWPWD[")==0){
         sscanf(input.c_str(), "NEWPWD[%i,%i]", &length, &symbSet);
-        newPassword(length, symbSet);
+        //myServer::newPassword(length, symbSet);
         return "OK";
     }
-    else if(input.compare(0,4, "PWD[")){
-    pwd = input.substr(5,input.size);
-    pwd.erase(input.size, input.size)
+    else if(input.compare(0,4, "PWD[") == 0){
+    pwd = input.substr(4,input.size()-5);
 
     }
 
 }
+
