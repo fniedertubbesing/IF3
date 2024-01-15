@@ -193,7 +193,7 @@ string TCPserver::response(string incomingMsg){
 }
 
 
-virtual string TCPserver::myResponse(string input){
+string TCPserver::myResponse(string input){
 	return string("NO DATA YET YET YET");
 }
 

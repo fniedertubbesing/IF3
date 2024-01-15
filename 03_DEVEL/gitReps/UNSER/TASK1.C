@@ -53,7 +53,7 @@ string BlackBoxUnsafe::randomPwd(int l){
 
 
 string BlackBoxSafe::input(string strPwd){
-    if(sha256(strPwd) == this->pwd_){ //compare encrypted passwords
+    if(sha256(strPwd).compare(this->pwd_) == 0){ //compare encrypted passwords
         return "TRUE";
     }
     else{

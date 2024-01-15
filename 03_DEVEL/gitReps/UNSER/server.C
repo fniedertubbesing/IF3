@@ -33,9 +33,9 @@ protected:
     string checkPassword(string password);
     void newPassword(int Length, int symbSet);
 
-    public:
-
     string myResponse(string input);
+
+    public:
 
     myServer(int port, int maxDataSizeRecv_) : TCPserver(port, maxDataSizeRecv_) {};
 };
@@ -44,7 +44,7 @@ protected:
 int main(){
 
 	srand(time(nullptr));
-	TCPserver srv(2022,25);
+	myServer srv(2022,25);
 	srv.run();
 }
 

@@ -52,27 +52,30 @@ int main() {
 */
 
     c.set();
+    cout << c.newpwd() << endl;
     c.sendData(c.newpwd());
-    string imsg = c.receive(32);
-    cout << imsg << endl;
-    long long int i;
+    string imsg = c.receive(3);
+
+    long int i;
 
     if(imsg == "OK"){
+    imsg.clear();
     imsg = "FALSE";
     i = 0;
 
-        while(imsg == "FALSE"){
-        c.sendData(c.pwdguess());
-        imsg = c.receive(5);
-        //cout << imsg << endl;
-        i++;
+        while(imsg.compare("FALSE") == 0){
+            c.sendData(c.pwdguess());
+            imsg.clear();
+            imsg = c.receive(6);
+            i++;
         }
+        c.sendData("BYEBYE");
+        cout << "Das Passwort wurde nach " << i << " Versuchen erraten" << endl;
     }
     else{
-        cout << "Fehler" << endl;
+        cout << "Fehler: Passwort konnte nicht generiert werden" << endl;
     }
-    c.sendData("BYEBYE");
-    cout << "Das Passwort wurde nach " << i << " Versuchen erraten" << endl;
+
 
 
 	return 0;
@@ -85,7 +88,7 @@ string client::pwdguess(){
     for(int i = 0; i < pl_; i++){
         pwdGuess[i] = TASK1::SYMBOLS[rand()% al_];
     }
-    return pwdGuess;
+    return "PWD[" + pwdGuess + ']';
 }
 
 void client::set(){
@@ -98,6 +101,8 @@ return;
 }
 
 string client::newpwd(){
-return "NEWPWD[" + pl_ + ',' + al_ + ']';
+
+
+return "NEWPWD[" + to_string(pl_) + ',' + to_string(al_) + ']';
 }
 
