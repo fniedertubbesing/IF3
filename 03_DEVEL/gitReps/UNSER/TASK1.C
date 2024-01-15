@@ -51,7 +51,7 @@ string BlackBoxUnsafe::randomPwd(int l){
 }
 //_________________________________________________________________________________________________
 
-
+/*
 string BlackBoxSafe::input(string strPwd){
     if(sha256(strPwd) == this->pwd_){ //compare encrypted passwords
         return "right password";
@@ -80,7 +80,7 @@ Server::Server(){
 Server::~Server(){
     delete pwdBox;
 }
-
+*/
 void demoTASK1_00(){
 	string pwd("meinpassword");
 	cout << "pwd   : " << pwd << endl;

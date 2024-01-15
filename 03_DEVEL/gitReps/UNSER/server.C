@@ -20,12 +20,73 @@
 
 #include "TASK1.H"
 
+class myServer : public TCPserver{
+protected:
+    TASK1::BlackBoxSafe *pwdBox = nullptr;
+
+    string checkPassword(string password);
+    void newPassword(int Length, int symbSet);
+
+    public:
+
+    string myResponse(string input);
+
+
+    myServer(int port, int maxDataSizeRecv_) : TCPserver(int port, int maxDataSizeRecv);
+    ~myServer():~TCPserver();
+};
+
 
 int main(){
+
 	srand(time(nullptr));
-	TCPserver srv(2022,25);
+	myServer srv(2022,25);
 	srv.run();
 }
 
 
+string BlackBoxSafe::input(string strPwd){
+    if(sha256(strPwd) == this->pwd_){ //compare encrypted passwords
+        return "right password";
+    }
+    else{
+        return "wrong password";
+    }
+}
 
+string myServer::checkPassword(string password){
+    return pwdBox->input(password);
+}
+
+void myServer::newPassword(int Length, int symbSet){
+    if(pwdBox != nullptr){ //free allocated memory if pwdBox Object was already created
+        delete pwdBox;
+        pwdBox = nullptr;
+    }
+    BlackBoxSafe *pwdBox = new BlackBoxSafe(Length,symbSet);
+}
+/*
+myServer::myServer(){
+    newPassword(4,4); //default values to start with
+}
+
+myServer::~myServer(){
+    delete pwdBox;
+}
+*/
+
+myServer::myResponse(string input){
+int length, symbSet;
+string pwd;
+    if(input.compare(0, 7, "NEWPWD[")){
+        sscanf(input.c_str(), "NEWPWD[%i,%i]", &length, &symbSet);
+        newPassword(length, symbSet);
+        return "OK";
+    }
+    else if(input.compare(0,4, "PWD[")){
+    pwd = input.substr(5,input.size);
+    pwd.erase(input.size, input.size)
+
+    }
+
+}
