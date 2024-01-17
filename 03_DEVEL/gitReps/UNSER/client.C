@@ -19,7 +19,7 @@ private:
     int pl_; // Passwortlänge
     int al_; // Alphabetlänge
 public:
-    void set(); // Setzen der Passwort.- unf Alphabetlänge
+    void set(int pl, int al); // Setzen der Passwort.- unf Alphabetlänge
     client() : TCPclient(){};
     string pwdguess(); // Methode zum erraten eines Passworts
     string newpwd(); // Erzeugen eines Strings für den Server mit Passwort.- und Alphabetlänge
@@ -31,6 +31,9 @@ int main() {
 	client c;
 	string host = "localhost";
 	string msg;
+	string imsg;
+
+	long int i;
 
 	//connect to host
 	c.conn(host , 2022);
@@ -50,31 +53,38 @@ int main() {
 		cout << "got response:" << msg << endl;
 		sleep(1);
 */
+    for(int pl = TASK1::MINIMAL_PWD_LENGTH; pl<=7; pl++){
+        for(int al = 2; al<=7; al++){
 
-    c.set();
-    cout << c.newpwd() << endl;
-    c.sendData(c.newpwd());
-    string imsg = c.receive(3);
+            c.set(pl, al);
 
-    long int i;
+            for(int v = 1; v<=10;v++){
+                c.sendData(c.newpwd());
+                imsg = c.receive(3);
 
-    if(imsg == "OK"){
-    imsg.clear();
-    imsg = "FALSE";
-    i = 0;
+                if(imsg.compare("OK") == 0){
 
-        while(imsg.compare("FALSE") == 0){
-            c.sendData(c.pwdguess());
-            imsg.clear();
-            imsg = c.receive(6);
-            i++;
+                }
+                else{
+                    cout << "Fehler bei der Passwortgenerierung" << endl;
+                    exit(0);
+                }
+                i = 0;
+                do{
+                    i++;
+                    c.sendData(c.pwdguess());
+                    imsg = c.receive(6);
+                    if(imsg.compare("TRUE") == 0){
+                        cout << "pl = " << pl << "  " << "al = " << al << " " << "i = " << i << endl;
+                        break;
+                    }
+                }while(1);
+
+
+            }
         }
-        c.sendData("BYEBYE");
-        cout << "Das Passwort wurde nach " << i << " Versuchen erraten" << endl;
     }
-    else{
-        cout << "Fehler: Passwort konnte nicht generiert werden" << endl;
-    }
+    c.sendData("BYEBYE");
 
 
 
@@ -91,18 +101,21 @@ string client::pwdguess(){
     return "PWD[" + pwdGuess + ']';
 }
 
-void client::set(){
-cout << "Bitte geben Sie die Passwortlänge und die Alphabetlänge an:" << endl;
-cin >> pl_;
-cout << endl;
-cin >> al_ ;
-cout<< endl;
+void client::set(int pl, int al){
+
+pl_= pl;
+al_= al;
 return;
 }
 
 string client::newpwd(){
 
+string test;
 
-return "NEWPWD[" + to_string(pl_) + ',' + to_string(al_) + ']';
+test = "NEWPWD[" + to_string(pl_) + ',' + to_string(al_) + ']';
+
+//cout << test<< endl;
+
+return test;
 }
 
