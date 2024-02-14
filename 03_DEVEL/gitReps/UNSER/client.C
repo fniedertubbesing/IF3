@@ -78,7 +78,7 @@ int main() {
 
 
     for(int pl = TASK1::MINIMAL_PWD_LENGTH; pl<=6; pl++){
-        for(int al = 2; al<=6; al++){
+        for(int al = 2; al<=4; al++){
 
 
             c.set(pl, al);
