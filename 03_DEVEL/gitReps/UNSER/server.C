@@ -37,7 +37,7 @@ using namespace std;
 
 /**
  *
- * \class Server
+ * \class myServer
  *
  * \brief Implements the needed server methods and stores a encrypted pasword.
  *
