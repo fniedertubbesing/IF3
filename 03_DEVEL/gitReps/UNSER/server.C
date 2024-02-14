@@ -25,7 +25,13 @@
 
 using namespace std;
 
-
+/**
+ *
+ * \class Server
+ *
+ * \brief Implements the needed server methods and stores a encrypted pasword.
+ *
+ */
 class myServer : public TCPserver{
 protected:
     TASK1::BlackBoxSafe *pwdBox_ = nullptr;
@@ -48,12 +54,20 @@ int main(){
 	srv.run();
 }
 
-
+/**
+ *
+ * \brief Checks the given password by using the implemented method in class BlackBoxSafe.
+ *
+ */
 string myServer::checkPassword(string password){
     return pwdBox_->input(password);
 }
 
-
+/**
+ *
+ * \brief Stores a new password in BlackBoxSafe, according to given password length and alphabet.
+ *
+ */
 void myServer::newPassword(int Length, int symbSet) {
     if (this->pwdBox_ != nullptr) {
         delete pwdBox_;
@@ -62,7 +76,11 @@ void myServer::newPassword(int Length, int symbSet) {
     pwdBox_ = new TASK1::BlackBoxSafe(Length, symbSet);
 }
 
-
+/**
+ *
+ * \brief Checks the incoming message for commands according to communication protocol and reacts to incoming command.
+ *
+ */
 string myServer::myResponse(string input){
 int length, symbSet;
 string pwd;
