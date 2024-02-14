@@ -111,28 +111,6 @@ public:
 	string input(string strPwd);
 };
 
-/**
- *
- * \class Server
- *
- * \brief Implements the needed server methods and stores a encrypted pasword.
- *
- */
-/*class Server{
-private:
-    BlackBoxSafe *pwdBox = nullptr;
-
-public:
-    string checkPassword(string password);
-    void newPassword(int Length, int symbSet);
-
-    Server();
-    ~Server();
-
-
-};
-*/
-
 
 
 /**
