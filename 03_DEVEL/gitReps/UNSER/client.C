@@ -3,6 +3,17 @@
  *
  *  Created on: 11.09.2019
  *      Author: aml
+
+Name, Matrikelnummer:
+
+Felix Niedertubbesing, 1332685
+Marcel Pischel, 1330102
+Jonathan Büscher, 1328105
+
+
+
+
+
  */
 
 #include <string>
