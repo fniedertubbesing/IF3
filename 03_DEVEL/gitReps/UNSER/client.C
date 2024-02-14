@@ -122,7 +122,7 @@ string client::pwdguess(){
 
 /**
  *
- * \brief Methode setzt die Passwort.- und die Alphabetlänge.
+ * \brief Methode setzt die Passwort- und die Alphabetlänge.
  *
  */
 
@@ -135,7 +135,7 @@ return;
 
 /**
  *
- * \brief Methode ereugt den Befehl zum erstellen eines neues Passworts
+ * \brief Methode erzeugt den Befehl zum erstellen eines neues Passworts.
  *
  */
 
