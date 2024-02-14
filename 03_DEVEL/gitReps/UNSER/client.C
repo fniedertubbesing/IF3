@@ -14,6 +14,16 @@
 
 using namespace std;
 
+
+
+/**
+ *
+ * \class client
+ *
+ * \brief Implementiert die von der Aufgabenstellung geforderten Funktionen
+ *
+ */
+
 class client : public TCPclient{
 private:
     int pl_; // Passwortlänge
@@ -53,6 +63,9 @@ int main() {
 		cout << "got response:" << msg << endl;
 		sleep(1);
 */
+
+
+
     for(int pl = TASK1::MINIMAL_PWD_LENGTH; pl<=7; pl++){
         for(int al = 2; al<=7; al++){
 
@@ -92,6 +105,12 @@ int main() {
 	}
 
 
+/**
+ *
+ * \brief Methode erzeugt ein zufällig generiertes Passwort mit der Länge pl und aus dem Alphabet al.
+ *
+ */
+
 string client::pwdguess(){
     string pwdGuess = TASK1::SYMBOLS.substr(0,pl_);
 
@@ -101,12 +120,24 @@ string client::pwdguess(){
     return "PWD[" + pwdGuess + ']';
 }
 
+/**
+ *
+ * \brief Methode setzt die Passwort.- und die Alphabetlänge.
+ *
+ */
+
 void client::set(int pl, int al){
 
 pl_= pl;
 al_= al;
 return;
 }
+
+/**
+ *
+ * \brief Methode ereugt den Befehl zum erstellen eines neues Passworts
+ *
+ */
 
 string client::newpwd(){
 
