@@ -83,8 +83,7 @@ int main() {
 
             c.set(pl, al);
 
-            for(int v = 1; v<=10;v++){
-                c.sendData(c.newpwd());
+            c.sendData(c.newpwd());
                 imsg = c.receive(3);
 
                 if(imsg.compare("OK") == 0){
@@ -94,13 +93,26 @@ int main() {
                     cout << "Fehler bei der Passwortgenerierung" << endl;
                     exit(0);
                 }
+
+
+            for(int v = 1; v<=10;v++){
+
                 i = 0;
                 do{
                     i++;
                     c.sendData(c.pwdguess());
                     imsg = c.receive(6);
                     if(imsg.compare("TRUE") == 0){
-                        cout << "pl = " << pl << "  " << "al = " << al << " " << "i = " << i << endl;
+                        cout
+
+                        << pl
+                        << "  "
+
+                        << al
+                        << " "
+
+                        << i
+                        << endl;
                         break;
                     }
                 }while(1);
